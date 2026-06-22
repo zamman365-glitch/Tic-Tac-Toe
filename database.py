@@ -81,3 +81,37 @@ def show_stats(player_name):
         print("Losses :", result[1])
         print("Draws  :", result[2])
 
+
+
+def show_leaderboard():
+    query = """
+    SELECT player_name, wins
+    FROM players
+    ORDER BY wins DESC
+    LIMIT 5
+    """
+
+    cursor.execute(query)
+
+    results = cursor.fetchall()
+
+    print("\n===== LEADERBOARD =====")
+
+    for i, row in enumerate(results, start=1):
+        print(f"{i}. {row[0]} - {row[1]} wins")
+
+def show_match_history():
+    query = """
+    SELECT player_name, result, played_at
+    FROM matches
+    ORDER BY played_at DESC
+    """
+
+    cursor.execute(query)
+
+    results = cursor.fetchall()
+
+    print("\n===== MATCH HISTORY =====")
+
+    for row in results:
+        print(row)

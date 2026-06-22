@@ -5,9 +5,10 @@ from database import (
     update_win,
     update_loss,
     update_draw,
-    show_stats
+    show_stats,
+    show_leaderboard,
+    show_match_history
 )
-
 # Create Board
 board = [" " for _ in range(9)]
 
@@ -152,21 +153,46 @@ def play_game(player_name):
 # Main Program
 # ==========================
 
-player_name = input("Enter your name: ")
+# ==========================
+# Main Program
+# ==========================
 
+player_name = input("Enter your name: ")
 add_player(player_name)
 
 while True:
 
-    reset_board()
+    print("\n===== MENU =====")
+    print("1. Play Game")
+    print("2. View Stats")
+    print("3. View Leaderboard")
+    print("4. View Match History")
+    print("5. Exit")
 
-    play_game(player_name)
+    choice = input("Enter your choice: ")
 
-    print("\nYour Current Stats:")
-    show_stats(player_name)
+    if choice == "1":
 
-    choice = input("\nPlay Again? (y/n): ")
+        reset_board()
+        play_game(player_name)
 
-    if choice.lower() != "y":
+    elif choice == "2":
+
+        show_stats(player_name)
+
+    elif choice == "3":
+
+        show_leaderboard()
+
+    elif choice == "4":
+
+        show_match_history()
+
+    elif choice == "5":
+
         print("\n👋 Thanks for playing!")
         break
+
+    else:
+
+        print("❌ Invalid Choice!")
